@@ -56,8 +56,9 @@ body {
 .hero-image {
   width: 100%;
   max-width: 260px;
-  height: auto;
+  max-height: 340px;
   object-fit: cover;
+  object-position: center 25%;
   border-radius: 16px;
   border: 2px solid var(--border);
 }
@@ -80,12 +81,13 @@ p {
 
 h1 {
   margin-bottom: 10px;
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+  line-height: 1.15;
 }
 
 .lead {
   color: var(--muted);
-  font-size: 1.05rem;
+  font-size: 1rem;
   line-height: 1.7;
 }
 
@@ -169,6 +171,7 @@ button:hover {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
   margin-top: 26px;
+  align-items: start;
 }
 
 .panel {
@@ -180,12 +183,71 @@ button:hover {
 }
 
 .item + .item {
-  margin-top: 16px;
+  margin-top: 22px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
 }
 
 .company,
 .meta {
   color: var(--muted);
+}
+
+.company {
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+.meta {
+  font-size: 0.9rem;
+}
+
+.tag {
+  display: inline-block;
+  margin-left: 6px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid #bfd6ff;
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.tools {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.tools strong {
+  color: var(--text);
+}
+
+.skill-groups {
+  margin: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.skill-group dt {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.skill-group dd {
+  margin: 0;
+}
+
+.skill-group dd p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.93rem;
+  line-height: 1.6;
 }
 
 ul {
@@ -243,9 +305,17 @@ ul {
   .hero-card,
   .panel {
     box-shadow: none;
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
 
-  .actions {
+  .item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .actions,
+  .site-footer {
     display: none;
   }
 }
