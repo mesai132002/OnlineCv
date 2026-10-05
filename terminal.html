@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Angel Mendoza CV - Computer Systems Engineer (terminal view)"
+    />
+    <title>Angel Mendoza | Terminal CV</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="terminal.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-name">Angel Mendoza</span>
+        <span class="brand-role">Computer Systems Engineer</span>
+      </div>
+      <nav class="topbar-actions" aria-label="View options">
+        <a href="index.html" class="ghost-link">Classic view</a>
+        <button type="button" id="skipButton" class="ghost-btn">Skip animation</button>
+        <button type="button" id="printButton" class="solid-btn">Print CV</button>
+      </nav>
+    </header>
+
+    <main class="stage">
+      <div class="terminal" id="terminal">
+        <div class="titlebar" aria-hidden="true">
+          <span class="titlebar-path">angel@veracruz: ~/cv</span>
+          <span class="titlebar-shell">bash — 120×40</span>
+        </div>
+
+        <div class="screen" id="screen">
+          <p class="motd">
+            Last login: <span id="lastLogin">Sun Oct 4</span> on ttys001 · Type
+            <kbd>help</kbd> at the end to explore. Press any key to skip.
+          </p>
+
+          <!-- whoami -->
+          <section class="block" data-cmd="whoami" aria-label="Identity">
+            <div class="prompt-line">
+              <span class="ps1">angel@veracruz<span class="ps1-sep">:</span><span class="ps1-path">~/cv</span>$</span>
+              <span class="cmd">whoami</span>
+            </div>
+            <div class="output">
+              <h1 class="who-name">Angel Mendoza</h1>
+              <p class="who-role">Computer Systems Engineer <span class="dim">// software · databases · networks</span></p>
+            </div>
+          </section>
+
+          <!-- profile -->
+          <section class="block" data-cmd="contact" aria-label="Personal information">
+            <div class="prompt-line">
+              <span class="ps1">angel@veracruz<span class="ps1-sep">:</span><span class="ps1-path">~/cv</span>$</span>
+              <span class="cmd">cat profile.json</span>
+            </div>
+            <div class="output json">
+<pre>{
+  <span class="k">"role"</span>: <span class="s">"Computer Systems Engineer"</span>,
+  <span class="k">"location"</span>: <span class="s">"Veracruz, Mexico"</span>,
+  <span class="k">"phone"</span>: <a class="s" href="tel:+522294588889">"+52 229 458 8889"</a>,
+  <span class="k">"email"</span>: <a class="s" href="mailto:mesai132002@gmail.com">"mesai132002@gmail.com"</a>,
+  <span class="k">"linkedin"</span>: <a class="s" href="https://www.linkedin.com/in/ángel-iván-mendoza-sánchez-5a2141305" target="_blank" rel="noreferrer">"in/ángel-iván-mendoza-sánchez"</a>,
+  <span class="k">"birthdate"</span>: <span class="s">"2002-09-13"</span>,
+  <span class="k">"age"</span>: <span class="n" data-age>24</span>,
+  <span class="k">"willing_to_relocate"</span>: <span class="n">true</span>
+}</pre>
+            </div>
+          </section>
+
+          <!-- summary -->
+          <section class="block" data-cmd="summary" aria-label="Professional summary">
+            <div class="prompt-line">
+              <span class="ps1">angel@veracruz<span class="ps1-sep">:</span><span class="ps1-path">~/cv</span>$</span>
+              <span class="cmd">cat summary.md</span>
+            </div>
+            <div class="output prose">
+              <p class="md-h"># Professional Summary</p>
+              <p>
+                Bachelor in Systems Engineering, proficient in Java programming
+                and MySQL database management, as well as in architecture,
+                routing, and switching of virtual and physical networks.
+                Continuously expanding knowledge in software design, web
+                development, and physical/virtual networking. Actively seeking
+                professional opportunities aligned with my career path.
+              </p>
+            </div>
+          </section>
+
+          <!-- experience -->
+          <section class="block" data-cmd="experience" aria-label="Work experience">
+            <div class="prompt-line">
+              <span class="ps1">angel@veracruz<span class="ps1-sep">:</span><span class="ps1-path">~/cv</span>$</span>
+              <span class="cmd">git log --career</span>
+            </div>
+            <div class="output">
+              <article class="commit">
+                <p class="commit-head">
+                  <span class="hash">commit 8e41c0a</span>
+                  <span class="refs">(<span class="ref-head">HEAD -&gt; career</span>, <span class="ref-tag">present</span>)</span>
+                </p>
+                <p class="commit-meta"><span class="dim">Org:</span>  H. Ayuntamiento de Veracruz · Directorate of Modernization and Open Government</p>
+                <p class="commit-meta"><span class="dim">Date:</span> August 2026 — Present</p>
+                <h2 class="commit-msg"><span class="type">feat:</span> Municipal Web Platforms and Systems Development</h2>
+                <ul class="commit-body">
+                  <li>Develop and enhance the official municipal web platform, delivering features that support digital transformation initiatives and improve access to public services.</li>
+                  <li>Design, develop, and maintain database-centered solutions for municipal departments, streamlining operations through process automation, data integration, and scalable system architecture.</li>
+                </ul>
+                <p class="stack"><span class="dim">stack:</span>
+                  <span>HTML</span><span>CSS</span><span>JavaScript</span><span>PHP</span><span>Laravel</span><span>MySQL</span><span>PostgreSQL</span><span>Git/GitHub</span>
+                </p>
+              </article>
+
+              <article class="commit">
+                <p class="commit-head">
+                  <span class="hash">commit 3b9d27f</span>
+                </p>
+                <p class="commit-meta"><span class="dim">Org:</span>  SEPSA (Servicios Especiales Portuarios S.A. de C.V.)</p>
+                <p class="commit-meta"><span class="dim">Date:</span> August 2024 — January 2025</p>
+                <h2 class="commit-msg"><span class="type">refactor:</span> Payment Administration Software Development</h2>
+                <ul class="commit-body">
+                  <li>Initiated the migration, upgrade, and refactoring project of the "Accounts Payable" module's code within SEPSA's vendor payment control system.</li>
+                </ul>
+                <p class="stack"><span class="dim">stack:</span>
+                  <span>VBA</span><span>OOP</span><span>Java</span><span>MySQL</span><span>Spring Boot</span><span>GitHub</span>
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <!-- education -->
+          <section class="block" data-cmd="education" aria-label="Education">
+            <div class="prompt-line">
+              <span class="ps1">angel@veracruz<span class="ps1-sep">:</span><span class="ps1-path">~/cv</span>$</span>
+              <span class="cmd">cat education.md</span>
+            </div>
+            <div class="output prose">
+              <p class="md-h"># B.S. in Computer Systems Engineering</p>
+              <p>Instituto Tecnológico Nacional de México, Campus Veracruz</p>
+              <p><span class="dim">period:</span> 2020 — 2025 <span class="ok">[completed]</span></p>
+            </div>
+          </section>
+
+          <!-- skills -->
+          <section class="block" data-cmd="skills" aria-label="IT skills">
+            <div class="prompt-line">
+              <span class="ps1">angel@veracruz<span class="ps1-sep">:</span><span class="ps1-path">~/cv</span>$</span>
+              <span class="cmd">tree skills/</span>
+            </div>
+            <div class="output">
+              <p class="tree-root">skills/</p>
+              <ul class="tree">
+                <li><span class="dir">languages/</span><span class="leaf">Java · Python · JavaScript · VBA</span></li>
+                <li><span class="dir">frameworks/</span><span class="leaf">Spring Boot · Angular</span></li>
+                <li><span class="dir">databases/</span><span class="leaf">MySQL · PostgreSQL</span></li>
+                <li><span class="dir">infrastructure/</span><span class="leaf">Proxmox KVM · Linux</span></li>
+                <li><span class="dir">network/</span><span class="leaf">Architecture &amp; design · Routing · Switching · Configuration</span></li>
+                <li><span class="dir">maintenance/</span><span class="leaf">Computers &amp; network devices</span></li>
+              </ul>
+              <p class="dim">6 directories, 15 skills</p>
+            </div>
+          </section>
+
+          <!-- languages -->
+          <section class="block" data-cmd="languages" aria-label="Languages">
+            <div class="prompt-line">
+              <span class="ps1">angel@veracruz<span class="ps1-sep">:</span><span class="ps1-path">~/cv</span>$</span>
+              <span class="cmd">locale</span>
+            </div>
+            <div class="output">
+<pre><span class="k">LANG</span>=<span class="s">es_MX.UTF-8</span>       <span class="dim"># Spanish — Native</span>
+<span class="k">LANGUAGE</span>=<span class="s">en_US.UTF-8</span>   <span class="dim"># English — Professional proficiency</span></pre>
+            </div>
+          </section>
+
+          <!-- soft skills -->
+          <section class="block" data-cmd="soft-skills" aria-label="Soft skills">
+            <div class="prompt-line">
+              <span class="ps1">angel@veracruz<span class="ps1-sep">:</span><span class="ps1-path">~/cv</span>$</span>
+              <span class="cmd">systemctl status soft-skills</span>
+            </div>
+            <div class="output">
+              <p><span class="ok">●</span> soft-skills.service — professional attributes</p>
+              <p class="svc-meta"><span class="dim">Active:</span> <span class="ok">active (running)</span> since 2020</p>
+              <ul class="svc-list">
+                <li>Resilience and adaptability for different projects</li>
+                <li>Quick learner and self-motivated</li>
+                <li>Team player</li>
+                <li>Committed to the work and projects</li>
+                <li>Proactive and responsible attitude</li>
+                <li>Customer and client-oriented communication</li>
+              </ul>
+            </div>
+          </section>
+
+          <div id="history" aria-live="polite"></div>
+
+          <form class="input-line" id="shellForm" autocomplete="off">
+            <label for="shellInput" class="ps1">angel@veracruz<span class="ps1-sep">:</span><span class="ps1-path">~/cv</span>$</label>
+            <input
+              id="shellInput"
+              type="text"
+              spellcheck="false"
+              autocapitalize="off"
+              aria-label="Type a command, for example help"
+              placeholder="type help"
+            />
+          </form>
+
+          <div class="quick" aria-label="Quick commands">
+            <button type="button" data-run="help">help</button>
+            <button type="button" data-run="contact">contact</button>
+            <button type="button" data-run="experience">experience</button>
+            <button type="button" data-run="skills">skills</button>
+            <button type="button" data-run="clear">clear</button>
+          </div>
+        </div>
+
+        <div class="statusbar" aria-hidden="true">
+          <span class="status-left"><span class="status-tag">[cv]</span> 0:bash*</span>
+          <span class="status-right">Veracruz, MX · <span id="clock">--:--</span></span>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p>© <span id="year"></span> Angel Mendoza · <a href="index.html">Classic CV</a></p>
+    </footer>
+
+    <script src="terminal.js"></script>
+  </body>
+</html>

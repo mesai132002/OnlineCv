@@ -164,6 +164,26 @@ button:hover {
   opacity: 0.92;
 }
 
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.alt-view-link {
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  color: var(--accent);
+  padding: 10px 16px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.alt-view-link:hover {
+  background: var(--accent-soft);
+}
+
 .grid-layout {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -230,7 +250,8 @@ ul {
     justify-content: center;
   }
 
-  .language-tags {
+  .language-tags,
+  .actions {
     justify-content: center;
   }
 }

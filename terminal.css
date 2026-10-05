@@ -1,0 +1,692 @@
+:root {
+  --bg: #0a0d0f;
+  --term: #11161a;
+  --term-edge: #1d252b;
+  --line: #242d34;
+  --text: #e4dfd3;
+  --muted: #8d949a;
+  --amber: #f0a548;
+  --teal: #6cc3b0;
+  --sand: #d8c79c;
+  --rose: #e8806f;
+  --green: #8fcf7a;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  --serif: "Instrument Serif", Georgia, serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(240, 165, 72, 0.08), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, rgba(108, 195, 176, 0.07), transparent 60%),
+    radial-gradient(circle at 1px 1px, rgba(228, 223, 211, 0.06) 1px, transparent 0) 0 0 / 22px 22px,
+    var(--bg);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* film grain */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+
+/* ---------- top bar ---------- */
+
+.topbar {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 28px 24px 18px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.brand-role {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.topbar-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ghost-link,
+.ghost-btn,
+.solid-btn {
+  font: 500 0.82rem/1 var(--mono);
+  min-height: 40px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.ghost-link,
+.ghost-btn {
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--line);
+}
+
+.ghost-link:hover,
+.ghost-btn:hover {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+.solid-btn {
+  border: 1px solid var(--amber);
+  background: var(--amber);
+  color: #1a1206;
+}
+
+.solid-btn:hover {
+  background: #f5b968;
+}
+
+.ghost-btn[hidden] {
+  display: none;
+}
+
+/* ---------- terminal window ---------- */
+
+.stage {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.terminal {
+  background: var(--term);
+  border: 1px solid var(--term-edge);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.4),
+    0 30px 80px -20px rgba(0, 0, 0, 0.75),
+    0 0 120px -40px rgba(240, 165, 72, 0.18);
+}
+
+.titlebar {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px;
+  background: #0d1114;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.titlebar-path {
+  color: var(--text);
+}
+
+.screen {
+  padding: 22px 26px 18px;
+  cursor: text;
+}
+
+.motd {
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+kbd {
+  font-family: var(--mono);
+  color: var(--amber);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0 5px;
+}
+
+.block {
+  margin-bottom: 26px;
+}
+
+.block.pending {
+  display: none;
+}
+
+.prompt-line,
+.input-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 10px;
+  align-items: baseline;
+}
+
+.ps1 {
+  color: var(--green);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.ps1-sep {
+  color: var(--muted);
+}
+
+.ps1-path {
+  color: var(--teal);
+}
+
+.cmd {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.cmd.typing::after {
+  content: "";
+  display: inline-block;
+  width: 0.6em;
+  height: 1.1em;
+  margin-left: 2px;
+  vertical-align: -0.18em;
+  background: var(--amber);
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.output {
+  margin-top: 8px;
+  padding-left: 14px;
+  border-left: 1px solid var(--line);
+}
+
+.output.hidden {
+  display: none;
+}
+
+.output.reveal > * {
+  animation: rise 260ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.output.reveal > *:nth-child(2) { animation-delay: 50ms; }
+.output.reveal > *:nth-child(3) { animation-delay: 100ms; }
+.output.reveal > *:nth-child(4) { animation-delay: 150ms; }
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+.output p,
+.output pre,
+.output ul,
+.output h1,
+.output h2 {
+  margin: 0;
+}
+
+pre {
+  font-family: var(--mono);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.dim {
+  color: var(--muted);
+}
+
+.ok {
+  color: var(--green);
+}
+
+.k {
+  color: var(--teal);
+}
+
+.s {
+  color: var(--sand);
+}
+
+a.s {
+  text-decoration: underline;
+  text-decoration-color: rgba(216, 199, 156, 0.35);
+  text-underline-offset: 3px;
+}
+
+a.s:hover {
+  color: var(--amber);
+  text-decoration-color: var(--amber);
+}
+
+.n {
+  color: var(--rose);
+}
+
+/* whoami */
+
+.who-name {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 8vw, 4.6rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.who-role {
+  margin-top: 8px !important;
+  color: var(--amber);
+}
+
+/* markdown-ish prose */
+
+.prose {
+  max-width: 72ch;
+}
+
+.prose p + p {
+  margin-top: 6px;
+}
+
+.md-h {
+  color: var(--amber);
+  font-weight: 600;
+  margin-bottom: 6px !important;
+}
+
+/* git log */
+
+.commit + .commit {
+  margin-top: 22px;
+}
+
+.hash {
+  color: var(--amber);
+}
+
+.refs {
+  color: var(--muted);
+}
+
+.ref-head {
+  color: var(--teal);
+  font-weight: 600;
+}
+
+.ref-tag {
+  color: var(--rose);
+}
+
+.commit-meta {
+  white-space: pre-wrap;
+}
+
+.commit-msg {
+  margin: 10px 0 6px 2ch !important;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.type {
+  color: var(--teal);
+}
+
+.commit-body {
+  list-style: none;
+  padding: 0 0 0 2ch;
+  max-width: 78ch;
+}
+
+.commit-body li {
+  position: relative;
+  padding-left: 2ch;
+}
+
+.commit-body li + li {
+  margin-top: 4px;
+}
+
+.commit-body li::before {
+  content: "-";
+  position: absolute;
+  left: 0;
+  color: var(--muted);
+}
+
+.stack {
+  margin: 10px 0 0 2ch !important;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  font-size: 0.82rem;
+}
+
+.stack span:not(.dim) {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 1px 7px;
+  color: var(--sand);
+}
+
+/* tree */
+
+.tree-root {
+  color: var(--teal);
+  font-weight: 600;
+}
+
+.tree {
+  list-style: none;
+  padding: 0;
+  margin: 2px 0 8px !important;
+}
+
+.tree li {
+  display: grid;
+  grid-template-columns: 4ch 17ch 1fr;
+  align-items: baseline;
+}
+
+.tree li::before {
+  content: "├──";
+  color: var(--muted);
+}
+
+.tree li:last-child::before {
+  content: "└──";
+}
+
+.dir {
+  color: var(--teal);
+}
+
+.leaf {
+  color: var(--text);
+}
+
+/* systemctl */
+
+.svc-meta {
+  padding-left: 2ch;
+}
+
+.svc-list {
+  list-style: none;
+  padding: 4px 0 0 2ch;
+}
+
+.svc-list li::before {
+  content: "├─ ";
+  color: var(--muted);
+}
+
+.svc-list li:last-child::before {
+  content: "└─ ";
+}
+
+/* interactive shell */
+
+#history .block {
+  margin-bottom: 22px;
+}
+
+.error {
+  color: var(--rose);
+}
+
+.help-grid {
+  display: grid;
+  grid-template-columns: 14ch 1fr;
+  gap: 2px 12px;
+}
+
+.help-grid dt {
+  color: var(--amber);
+}
+
+.help-grid dd {
+  margin: 0;
+  color: var(--muted);
+}
+
+.input-line {
+  position: relative;
+}
+
+.input-line input {
+  flex: 1;
+  min-width: 10ch;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  color: var(--text);
+  font: 500 1rem var(--mono);
+  caret-color: var(--amber);
+  padding: 0;
+}
+
+.input-line input::placeholder {
+  color: #4f585f;
+}
+
+.input-line.pending,
+.quick.pending {
+  display: none;
+}
+
+.quick {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.quick button {
+  font: 500 0.8rem var(--mono);
+  min-height: 36px;
+  padding: 0 12px;
+  color: var(--muted);
+  background: #0d1114;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+
+.quick button::before {
+  content: "$ ";
+  color: var(--green);
+}
+
+.quick button:hover {
+  color: var(--text);
+  border-color: var(--amber);
+}
+
+.statusbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 12px;
+  background: var(--amber);
+  color: #1a1206;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.status-tag {
+  font-weight: 600;
+}
+
+.site-footer {
+  text-align: center;
+  padding: 26px 16px 40px;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.site-footer a:hover {
+  color: var(--amber);
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 640px) {
+  body {
+    font-size: 13.5px;
+  }
+
+  .topbar,
+  .stage {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .screen {
+    padding: 18px 14px 14px;
+  }
+
+  .output {
+    padding-left: 10px;
+  }
+
+  .titlebar-shell {
+    display: none;
+  }
+
+  .tree li {
+    grid-template-columns: 4ch 1fr;
+  }
+
+  .tree .leaf {
+    grid-column: 2;
+    padding-bottom: 4px;
+    color: var(--muted);
+  }
+
+  .commit-msg,
+  .commit-body,
+  .stack {
+    margin-left: 0 !important;
+    padding-left: 0;
+  }
+
+  .help-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .help-grid dd {
+    margin-bottom: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---------- print: a clean, ink-friendly document ---------- */
+
+@media print {
+  :root {
+    --text: #111;
+    --muted: #555;
+    --amber: #8a5300;
+    --teal: #0d5c4f;
+    --sand: #222;
+    --rose: #8a2f22;
+    --green: #2c5d1d;
+    --line: #ccc;
+  }
+
+  body {
+    background: #fff;
+    font-size: 11px;
+  }
+
+  body::after,
+  .topbar-actions,
+  .titlebar,
+  .statusbar,
+  .motd,
+  .input-line,
+  .quick,
+  #history,
+  .site-footer {
+    display: none !important;
+  }
+
+  .terminal {
+    background: #fff;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .screen {
+    padding: 0;
+  }
+
+  .block,
+  .block.pending,
+  .output.hidden {
+    display: block !important;
+  }
+
+  .block {
+    break-inside: avoid;
+    margin-bottom: 16px;
+  }
+}
